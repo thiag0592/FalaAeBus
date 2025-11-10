@@ -1,0 +1,105 @@
+10-Nov-2025 19:05:07.163 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/11.0.14
+10-Nov-2025 19:05:07.171 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Nov 5 2025 19:03:02 UTC
+10-Nov-2025 19:05:07.171 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 11.0.14.0
+10-Nov-2025 19:05:07.172 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Linux
+10-Nov-2025 19:05:07.172 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            6.8.0-1030-azure
+10-Nov-2025 19:05:07.174 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+10-Nov-2025 19:05:07.174 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /usr/local/sdkman/candidates/java/21-tem
+10-Nov-2025 19:05:07.174 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           21+35-LTS
+10-Nov-2025 19:05:07.174 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Eclipse Adoptium
+10-Nov-2025 19:05:07.174 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /workspaces/FalaAeBus/tomcat11
+10-Nov-2025 19:05:07.175 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /workspaces/FalaAeBus/tomcat11
+10-Nov-2025 19:05:07.193 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/workspaces/FalaAeBus/tomcat11/conf/logging.properties
+10-Nov-2025 19:05:07.194 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+10-Nov-2025 19:05:07.194 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+10-Nov-2025 19:05:07.194 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+10-Nov-2025 19:05:07.194 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+10-Nov-2025 19:05:07.194 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang.reflect=ALL-UNNAMED
+10-Nov-2025 19:05:07.195 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+10-Nov-2025 19:05:07.195 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+10-Nov-2025 19:05:07.196 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+10-Nov-2025 19:05:07.197 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+10-Nov-2025 19:05:07.197 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --enable-native-access=ALL-UNNAMED
+10-Nov-2025 19:05:07.197 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/workspaces/FalaAeBus/tomcat11
+10-Nov-2025 19:05:07.197 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/workspaces/FalaAeBus/tomcat11
+10-Nov-2025 19:05:07.198 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/workspaces/FalaAeBus/tomcat11/temp
+10-Nov-2025 19:05:07.204 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The Apache Tomcat Native library which allows using OpenSSL was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib]
+10-Nov-2025 19:05:07.838 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+10-Nov-2025 19:05:07.912 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [1018] milliseconds
+10-Nov-2025 19:05:07.994 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+10-Nov-2025 19:05:07.995 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/11.0.14]
+10-Nov-2025 19:05:08.007 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/workspaces/FalaAeBus/tomcat11/webapps/ROOT]
+10-Nov-2025 19:05:08.482 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/workspaces/FalaAeBus/tomcat11/webapps/ROOT] has finished in [475] ms
+10-Nov-2025 19:05:08.485 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/workspaces/FalaAeBus/tomcat11/webapps/docs]
+10-Nov-2025 19:05:08.513 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/workspaces/FalaAeBus/tomcat11/webapps/docs] has finished in [28] ms
+10-Nov-2025 19:05:08.514 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/workspaces/FalaAeBus/tomcat11/webapps/examples]
+10-Nov-2025 19:05:08.968 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/workspaces/FalaAeBus/tomcat11/webapps/examples] has finished in [453] ms
+10-Nov-2025 19:05:08.969 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/workspaces/FalaAeBus/tomcat11/webapps/host-manager]
+10-Nov-2025 19:05:09.008 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/workspaces/FalaAeBus/tomcat11/webapps/host-manager] has finished in [39] ms
+10-Nov-2025 19:05:09.009 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/workspaces/FalaAeBus/tomcat11/webapps/manager]
+10-Nov-2025 19:05:09.035 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/workspaces/FalaAeBus/tomcat11/webapps/manager] has finished in [26] ms
+10-Nov-2025 19:05:09.039 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+10-Nov-2025 19:05:09.051 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [1130] milliseconds
+10-Nov-2025 19:15:07.462 INFO [Thread-1] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+10-Nov-2025 19:15:07.466 INFO [Thread-1] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+10-Nov-2025 19:15:07.500 INFO [Thread-1] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+10-Nov-2025 19:15:07.514 INFO [Thread-1] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+10-Nov-2025 19:19:01.386 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/11.0.14
+10-Nov-2025 19:19:01.396 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Nov 5 2025 19:03:02 UTC
+10-Nov-2025 19:19:01.396 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 11.0.14.0
+10-Nov-2025 19:19:01.396 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Linux
+10-Nov-2025 19:19:01.396 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            6.8.0-1030-azure
+10-Nov-2025 19:19:01.397 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+10-Nov-2025 19:19:01.397 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /usr/local/sdkman/candidates/java/21-tem
+10-Nov-2025 19:19:01.397 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           21+35-LTS
+10-Nov-2025 19:19:01.397 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Eclipse Adoptium
+10-Nov-2025 19:19:01.397 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /workspaces/FalaAeBus/tomcat11
+10-Nov-2025 19:19:01.397 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /workspaces/FalaAeBus/tomcat11
+10-Nov-2025 19:19:01.409 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/workspaces/FalaAeBus/tomcat11/conf/logging.properties
+10-Nov-2025 19:19:01.409 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+10-Nov-2025 19:19:01.409 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+10-Nov-2025 19:19:01.410 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+10-Nov-2025 19:19:01.410 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+10-Nov-2025 19:19:01.413 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang.reflect=ALL-UNNAMED
+10-Nov-2025 19:19:01.413 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+10-Nov-2025 19:19:01.414 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+10-Nov-2025 19:19:01.414 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+10-Nov-2025 19:19:01.414 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+10-Nov-2025 19:19:01.414 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --enable-native-access=ALL-UNNAMED
+10-Nov-2025 19:19:01.414 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/workspaces/FalaAeBus/tomcat11
+10-Nov-2025 19:19:01.414 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/workspaces/FalaAeBus/tomcat11
+10-Nov-2025 19:19:01.414 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/workspaces/FalaAeBus/tomcat11/temp
+10-Nov-2025 19:19:01.418 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The Apache Tomcat Native library which allows using OpenSSL was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib]
+10-Nov-2025 19:19:01.913 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+10-Nov-2025 19:19:01.950 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [824] milliseconds
+10-Nov-2025 19:19:02.007 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+10-Nov-2025 19:19:02.008 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/11.0.14]
+10-Nov-2025 19:19:02.034 INFO [main] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [/workspaces/FalaAeBus/tomcat11/webapps/tde5.war]
+10-Nov-2025 19:19:04.070 INFO [main] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+10-Nov-2025 19:19:04.269 INFO [main] org.hibernate.jpa.internal.util.LogHelper.logPersistenceUnitInformation HHH000204: Processing PersistenceUnitInfo [name: tde5PU]
+10-Nov-2025 19:19:04.369 INFO [main] org.hibernate.Version.logVersion HHH000412: Hibernate ORM core version 6.2.7.Final
+10-Nov-2025 19:19:04.372 INFO [main] org.hibernate.cfg.Environment.<clinit> HHH000406: Using bytecode reflection optimizer
+10-Nov-2025 19:19:04.742 WARN [main] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl.configure HHH10001002: Using built-in connection pool (not intended for production use)
+10-Nov-2025 19:19:04.754 INFO [main] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl.buildCreator HHH10001005: Loaded JDBC driver class: org.h2.Driver
+10-Nov-2025 19:19:04.755 INFO [main] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl.buildCreator HHH10001012: Connecting with JDBC URL [jdbc:h2:mem:tde5_db;DB_CLOSE_DELAY=-1]
+10-Nov-2025 19:19:04.756 INFO [main] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl.buildCreator HHH10001001: Connection properties: {password=****, user=sa}
+10-Nov-2025 19:19:04.756 INFO [main] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl.buildCreator HHH10001003: Autocommit mode: false
+10-Nov-2025 19:19:04.760 INFO [main] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections.<init> HHH10001115: Connection pool size: 20 (min=1)
+10-Nov-2025 19:19:05.507 INFO [main] org.hibernate.bytecode.internal.BytecodeProviderInitiator.buildBytecodeProvider HHH000021: Bytecode provider name : bytebuddy
+10-Nov-2025 19:19:06.544 INFO [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator.initiateService HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+10-Nov-2025 19:19:06.571 INFO [main] org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@7a7fdc1a] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+10-Nov-2025 19:19:06.580 INFO [main] org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@70eced1f] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+10-Nov-2025 19:19:07.121 INFO [main] org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PoolState.stop HHH10001008: Cleaning up connection pool [jdbc:h2:mem:tde5_db;DB_CLOSE_DELAY=-1]
+10-Nov-2025 19:19:08.069 INFO [main] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/workspaces/FalaAeBus/tomcat11/webapps/tde5.war] has finished in [6,033] ms
+10-Nov-2025 19:19:08.070 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/workspaces/FalaAeBus/tomcat11/webapps/ROOT]
+10-Nov-2025 19:19:08.096 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/workspaces/FalaAeBus/tomcat11/webapps/ROOT] has finished in [26] ms
+10-Nov-2025 19:19:08.097 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/workspaces/FalaAeBus/tomcat11/webapps/docs]
+10-Nov-2025 19:19:08.136 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/workspaces/FalaAeBus/tomcat11/webapps/docs] has finished in [39] ms
+10-Nov-2025 19:19:08.137 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/workspaces/FalaAeBus/tomcat11/webapps/examples]
+10-Nov-2025 19:19:08.432 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/workspaces/FalaAeBus/tomcat11/webapps/examples] has finished in [291] ms
+10-Nov-2025 19:19:08.432 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/workspaces/FalaAeBus/tomcat11/webapps/host-manager]
+10-Nov-2025 19:19:08.466 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/workspaces/FalaAeBus/tomcat11/webapps/host-manager] has finished in [34] ms
+10-Nov-2025 19:19:08.467 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/workspaces/FalaAeBus/tomcat11/webapps/manager]
+10-Nov-2025 19:19:08.497 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/workspaces/FalaAeBus/tomcat11/webapps/manager] has finished in [29] ms
+10-Nov-2025 19:19:08.501 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+10-Nov-2025 19:19:08.564 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [6611] milliseconds
