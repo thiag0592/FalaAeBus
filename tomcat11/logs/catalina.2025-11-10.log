@@ -103,3 +103,8 @@
 10-Nov-2025 19:19:08.497 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/workspaces/FalaAeBus/tomcat11/webapps/manager] has finished in [29] ms
 10-Nov-2025 19:19:08.501 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
 10-Nov-2025 19:19:08.564 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [6611] milliseconds
+10-Nov-2025 19:39:38.773 INFO [Thread-3] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+10-Nov-2025 19:39:38.780 INFO [Thread-3] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+10-Nov-2025 19:39:38.816 WARNING [Thread-3] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc The web application [tde5] registered the JDBC driver [org.h2.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+10-Nov-2025 19:39:38.837 INFO [Thread-3] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+10-Nov-2025 19:39:38.843 INFO [Thread-3] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
