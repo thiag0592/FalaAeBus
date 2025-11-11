@@ -43,7 +43,7 @@ public class CtrlFiltro implements ContainerRequestFilter {
 		
 		// Se o path não tem a String 'login', precisamos ver se o usuário efetuou previamente 
 		// a ação de login 
-		if (!path.contains("login")) {
+		if (!path.contains("login") || !path.contains("register")) {
 			// Se o usuário fez o login, então na sessão temos um dado vinculado ao rótulo "contaLogada"
 			Usuario conta = (Usuario)sessao.getAttribute("contaLogada");
 			if(conta == null) 	
