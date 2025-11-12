@@ -2,6 +2,8 @@ package controller;
 
 import org.glassfish.jersey.server.ResourceConfig;
 
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import jakarta.ws.rs.ApplicationPath;
 
 //
@@ -14,6 +16,10 @@ import jakarta.ws.rs.ApplicationPath;
 //Estamos indicado que todos os webservices terão no path da URL a indicação '/ws'
 @ApplicationPath("/ws") 
 public class ApplicationConfig extends ResourceConfig {
+	
+	public static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("tde5PU");
+	
+	
 	// Construtor da classe
 	public ApplicationConfig() {
 	    super();

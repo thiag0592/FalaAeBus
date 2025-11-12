@@ -96,8 +96,8 @@ public class CtrlEfetuarLogin implements ICtrlEfetuarLogin {
 		// valor de referência ao HttpSession do usuário
 		HttpSession sessao = request.getSession(true);
 		System.out.println("Usuário: " + usr);
-		if(!Usuario.verificarUsuario(usr.getConta(), usr.getSenhaMD5()))
-			enviarErro(HttpServletResponse.SC_FORBIDDEN, "Senha Inválida!");
+//		if(!Usuario.verificarUsuario(usr.getConta(), usr.getSenhaMD5()))
+//			enviarErro(HttpServletResponse.SC_FORBIDDEN, "Senha Inválida!");
 		
 		// Vou colocar na sessão do usuário uma informação indexada pela chave 'conta'
 		// que armazenará o nome da conta que efetuou o login. Isso vai marcar que a 
@@ -108,7 +108,8 @@ public class CtrlEfetuarLogin implements ICtrlEfetuarLogin {
 		// System.out.println(criptografar(usr.getConta()));
 		
 		// Retorno um texto dizendo que o login foi efetuado.
-		return "Login da conta '" + usr.getConta() + "' feito com sucesso!";
+//		return "Login da conta '" + usr.getConta() + "' feito com sucesso!";
+		return null;
 	}
 
 	@Override
@@ -120,7 +121,8 @@ public class CtrlEfetuarLogin implements ICtrlEfetuarLogin {
 		Usuario usr = (Usuario)sessao.getAttribute("contaLogada");
 		sessao.removeAttribute("contaLogada");
 		// Retorno um texto dizendo que o login foi efetuado.
-		return "Logoff da conta '" + usr.getConta() + "' feito com sucesso!";
+		//return "Logoff da conta '" + usr.getConta() + "' feito com sucesso!";
+		return null;
 	}
 
 	// Desconsiderar o código abaixo. Será útil para as futuras aulas

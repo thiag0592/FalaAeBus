@@ -3,13 +3,18 @@ package model;
 import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
 import java.util.HashMap;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.xml.bind.DatatypeConverter;
 
+@Entity
+@Table
 public class Usuario implements Serializable  {
 
 	//
@@ -38,7 +43,7 @@ public class Usuario implements Serializable  {
 	// MÉTODOS
 	//
 	public Usuario() {
-		System.out.println("Objeto Usário Instanciado pelo construtor vazio !");
+		System.out.println("Objeto Usuário Instanciado pelo construtor vazio !");
 	}
 	
 
@@ -106,13 +111,17 @@ public class Usuario implements Serializable  {
 	
 	public void validarDataNascimentoUsuario(String data) throws ModelException {
 		// Verifica formato ddMMyyyy
-		if (!data.matches("^\\d{8}$"))
+		if (!data.matches("^\\d{2}/\\d{2}/\\d{4}$"))
 			throw new ModelException("Erro: fomatação inválida");
 
 		int dia = Integer.parseInt(data.substring(0, 2));
-		int mes = Integer.parseInt(data.substring(2, 4));
-		int ano = Integer.parseInt(data.substring(4, 8));
+		int mes = Integer.parseInt(data.substring(3, 5));
+		int ano = Integer.parseInt(data.substring(6, 10));
 
+		if (LocalDate.now().getYear() - ano < 18) {
+			throw new ModelException("Erro: Usuário menor de idade!");
+		}
+		
 		if (mes < 1 || mes > 12)
 			throw new ModelException("Erro: Mês Inválido");
 
