@@ -6,14 +6,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
 <script>
 async function efetuarLogin() {
-	let conta = document.getElementById('conta').value; 
+	let email = document.getElementById('email').value; 
 	let senha = document.getElementById('senha').value;
     senha = CryptoJS.MD5(senha).toString();
 	
     let url = 'http://localhost:8080/tde5/ws/ctrlLogin/login';
 	
 	let usuario = {
-		"conta" : conta,
+		"enderecoUsuario" : email,
 		"senhaMD5" : senha
 	}
 
@@ -40,7 +40,7 @@ async function efetuarLogin() {
 </head>
 <body>
 	<h1>Login - prjEx02</h1>
-	Conta: <input type="text" id="conta"/><br/>
+	Email: <input type="text" id="email"/><br/>
 	Senha: <input type="password" id="senha"/><br/>
 	<button onclick="efetuarLogin()">Login</button><br/>
 	Resultado: <input type="text" size="80" id="resultado"/><br/>
