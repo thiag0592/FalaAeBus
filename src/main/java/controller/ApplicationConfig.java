@@ -25,6 +25,5 @@ public class ApplicationConfig extends ResourceConfig {
 	    super();
 	    System.out.println("==== ApplicationConfig inicializando ====");
 	    this.packages("controller");
-	    System.out.println("==== ApplicationConfig inicializado OK ====");
 	}
 }

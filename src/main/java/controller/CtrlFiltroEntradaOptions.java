@@ -26,7 +26,7 @@ public class CtrlFiltroEntradaOptions implements ContainerRequestFilter {
             System.out.println(">>> CtrlFiltroEntradaOptions : interceptando OPTIONS");
 
             Response resposta = Response.ok()
-                    .header("Access-Control-Allow-Origin", "localhost:8080")
+                    .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
                     .header("Access-Control-Allow-Credentials", "true")
                     .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")

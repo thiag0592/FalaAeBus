@@ -20,21 +20,10 @@ public interface ICtrlManterUsuario {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Usuario incluirUsuario(Usuario novo);
 
-	//TODO MÉTODO PARA TESTES, APAGAR AO FINAL DO DESENVOLVIMENTO
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Usuario> listarUsuarios();
-
-	@GET
-	@Path("/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Usuario listarUsuario(@PathParam("id") int id);
-
 	@PUT
-	@Path("/{id}/{sigla}/{nome}")
+	@Path("/alterarUsuario")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Usuario alterarUsuario(@PathParam("id") int id, @PathParam("sigla") String sigla,
-			@PathParam("nome") String nome);
+	public Usuario alterarUsuario(Usuario modificacao);
 
 	@DELETE
 	@Path("/{id}")

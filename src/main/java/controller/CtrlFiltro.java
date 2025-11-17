@@ -36,7 +36,7 @@ public class CtrlFiltro implements ContainerRequestFilter {
 
 		// Recupero a sessão vinculada à requisição
 		HttpSession sessao = request.getSession();
-
+		System.out.println("Sessão: "+sessao);
 		// TODO Falar na semana que vem
 		if (path.contains("application.wadl")) 
 			return;
@@ -48,8 +48,11 @@ public class CtrlFiltro implements ContainerRequestFilter {
 		} else if (!path.contains("login")) {
 			// Se o usuário fez o login, então na sessão temos um dado vinculado ao rótulo "contaLogada"
 			Usuario conta = (Usuario)sessao.getAttribute("contaLogada");
-			if(conta == null) 	
+			System.out.println("Conta Sessão: "+conta);
+			if(conta == null) 	{				
+				System.out.println("Não Autorizado");
 				throw new NotAuthorizedException("Não autorizado");
+			}
 			// Por curiosidade, vamos mostrar o JSESSIONID do usuário
 			for(Cookie biscoito : request.getCookies()) {
 				if(biscoito.getName().equals("JSESSIONID")) {

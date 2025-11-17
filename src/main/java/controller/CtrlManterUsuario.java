@@ -9,8 +9,11 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.core.Context;
 import model.Usuario;
 import model.dao.DaoUsuario;
 
@@ -20,6 +23,10 @@ import model.dao.DaoUsuario;
 
 @Path("/Usuario")
 public class CtrlManterUsuario implements ICtrlManterUsuario {
+	
+	@Context
+	private HttpServletRequest request;
+	
 	/**
 	 * Bloco static é executado quando o bytecode da classe é carregado (Class.forName)
 	 */
@@ -39,55 +46,27 @@ public class CtrlManterUsuario implements ICtrlManterUsuario {
 		System.out.println("incluindo usuario");
 		DaoUsuario dao = new DaoUsuario();
 		dao.incluirUsuario(novo);
+		
+		HttpSession sessao = request.getSession(true);
+		sessao.setAttribute("contaLogada", novo);
 		return novo;
 	}
 
-	@Override
-	public Collection<Usuario> listarUsuarios() {
-		DaoUsuario dao = new DaoUsuario();
-		return dao.obterUsuarios();
-	}
 
 	@Override
-	public Usuario listarUsuario(int id) {
-		System.out.println("---LISTOU USUARIO?---");
+	public Usuario alterarUsuario(Usuario modificacao) {
+		System.out.println("---ALTERAR USUARIO---");
 		DaoUsuario dao = new DaoUsuario();
-		Usuario d = dao.obterUsuario(id);
-		if(d == null)
-			CtrlEfetuarLogin.enviarErro(HttpServletResponse.SC_BAD_REQUEST, "Usuario não encontrado!");
-		return d; 
-	}
-
-	@Override
-	public Usuario alterarUsuario(int id, String sigla, String nome) {
-		return null;
-		/*
-		DaoUsuario dao = new DaoUsuario();
-		Usuario depto = dao.obterUsuario(id);
-		if (depto == null) {
-			CtrlEfetuarLogin.enviarErro(HttpServletResponse.SC_BAD_REQUEST, "Usuario não encontrado");
-			return null;
-		}
-		try {
-			depto.setSigla(sigla);
-			depto.setNome(nome);
-		} catch (ModelException e) {
-			CtrlEfetuarLogin.enviarErro(HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
-		}
-		return dao.alterarUsuario(depto);
-		*/
+		HttpSession session = request.getSession();
+		Usuario usrSession = (Usuario) session.getAttribute("contaLogada");
+		modificacao.setIdUsuario(usrSession.getIdUsuario());
+		return dao.alterarUsuario(modificacao);
 	}
 
 	@Override
 	public Usuario removerUsuario(int id) {
+		//TODO O QUE ACONTECE COM AS RESPOSTAS DE USUARIO AO SEREM EXCLUIDAS?
 		return null;
-		/*
-		DaoUsuario dao = new DaoUsuario();
-		Usuario depto = dao.obterUsuario(id);
-		if (depto == null)
-			CtrlEfetuarLogin.enviarErro(HttpServletResponse.SC_BAD_REQUEST, "Usuario não encontrado");
-		return dao.removerUsuario(depto);
-		*/
 	}
 
 	// Desconsiderar o código abaixo. Será útil para as futuras aulas

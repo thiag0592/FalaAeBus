@@ -5,9 +5,6 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>Segundo Exemplo REST</display-name>
 	
-	<listener>
-		<listener-class>controller.ConexaoBD</listener-class>
-	</listener>
 	
 	<welcome-file-list>
     	<welcome-file>index.html</welcome-file>

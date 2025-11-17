@@ -30,10 +30,10 @@ public class Usuario implements Serializable  {
     @Column(nullable = false)
     private String dataNascimentoUsuario;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String cpfUsuario;
     
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String enderecoUsuario;
 
     @Column(nullable = false)
@@ -92,7 +92,7 @@ public class Usuario implements Serializable  {
 	
 
 	private void validarNomeUsuario(String nomeUsuario) throws ModelException {
-		if (!nomeUsuario.matches("^[A-Za-z]+$"))
+		if (!nomeUsuario.matches("^[A-Za-z ]+$"))
 		    throw new ModelException("Erro: apenas letras são permitidas");
 		
 	}
@@ -109,7 +109,7 @@ public class Usuario implements Serializable  {
 		
 	}
 	
-	public void validarDataNascimentoUsuario(String data) throws ModelException {
+	public static void validarDataNascimentoUsuario(String data) throws ModelException {
 		// Verifica formato ddMMyyyy
 		if (!data.matches("^\\d{2}/\\d{2}/\\d{4}$"))
 			throw new ModelException("Erro: fomatação inválida");
@@ -148,8 +148,15 @@ public class Usuario implements Serializable  {
 	}
 
 
-	public void setCpfUsuario(String cpfUsuario) {
+	public void setCpfUsuario(String cpfUsuario) throws ModelException {
+		validarCPF(cpfUsuario);
 		this.cpfUsuario = cpfUsuario;
+	}
+
+	public static void validarCPF(String cpf) throws ModelException {
+	    // Padrão: 000.000.000-00
+	    if (!cpf.matches("^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$"))
+	        throw new ModelException("Erro: formato de CPF inválido. Use ###.###.###-##");
 	}
 
 
@@ -157,9 +164,16 @@ public class Usuario implements Serializable  {
 		return enderecoUsuario;
 	}
 
-
-	public void setEnderecoUsuario(String enderecoUsuario) {
+	//Endereço de email
+	public void setEnderecoUsuario(String enderecoUsuario) throws ModelException {
+		validarEnderecoEmail(enderecoUsuario);
 		this.enderecoUsuario = enderecoUsuario;
+	}
+
+	public static void validarEnderecoEmail(String email) throws ModelException {
+	    // Regex simples e comum para formato de e-mail
+	    if (!email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"))
+	        throw new ModelException("Erro: formato de e-mail inválido");
 	}
 
 
@@ -168,11 +182,20 @@ public class Usuario implements Serializable  {
 	}
 
 
-	public void setSenhaMD5(String senhaMD5) {
+	public void setSenhaMD5(String senhaMD5) throws ModelException {
+		senhaMD5 = senhaMD5.toUpperCase();
+		validarMD5(senhaMD5);
 		this.senhaMD5 = senhaMD5;
 	}
 
+	public static void validarMD5(String hash) throws ModelException {
+	    // Aceita somente MD5 em hexadecimal MAIÚSCULO (32 caracteres)
+		System.out.println(hash);
+	    if (!hash.matches("^[A-F0-9]{32}$"))
+	        throw new ModelException("Erro: o valor deve ser um hash MD5 válido em maiúsculas (32 caracteres hexadecimais)");
+	}
 
+	
 	public static String criptografarMD5(String texto) {
 	    try {
 			MessageDigest md = MessageDigest.getInstance("MD5");

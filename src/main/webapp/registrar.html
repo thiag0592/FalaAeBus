@@ -5,16 +5,23 @@
 <title>Solicitação de Login</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
 <script>
-async function efetuarLogin() {
-	let conta = document.getElementById('conta').value; 
+async function efetuarRegistro() {
+	let nome = document.getElementById('nome').value;
+	let email = document.getElementById('email').value; 
+	let dtnascimento = document.getElementById('dtnascimento').value;
+	let cpf = document.getElementById('cpf').value;
 	let senha = document.getElementById('senha').value;
+	
     senha = CryptoJS.MD5(senha).toString();
 	
-    let url = 'http://localhost:8080/tde5/ws/ctrlLogin';
+    let url = 'http://localhost:8080/tde5/ws/Usuario/Registro';
 	
 	let usuario = {
-		"conta" : conta,
-		"senhaMD5" : senha
+		"nomeUsuario":nome,
+	    "dataNascimentoUsuario":dtnascimento,
+	    "cpfUsuario":cpf,
+	    "enderecoUsuario":email,
+	    "senhaMD5":senha
 	}
 
 	document.getElementById('resultado').value = JSON.stringify(usuario);	
@@ -30,7 +37,7 @@ async function efetuarLogin() {
 		if(!response.ok)
 			throw new Error(`Erro - status: ${response.status}`);
 		let resultadoLogin = await response.text();
-		document.getElementById('resultado').value = resultadoLogin;
+		document.getElementById('resultado').value = "Usuário incluido com sucesso! " + resultadoLogin;
 	} catch(e) {
 		document.getElementById('resultado').value = e;
 	}
@@ -40,9 +47,12 @@ async function efetuarLogin() {
 </head>
 <body>
 	<h1>Login - prjEx02</h1>
-	Conta: <input type="text" id="conta"/><br/>
+	Nome: <input type="text" id="nome"/><br/>	
+	email: <input type="email" id="email"/><br/>
+	Data de Nascimetno: <input type="text" id="dtnascimento"/><br/>
+	CPF: <input type="text" id="cpf"/><br/>
 	Senha: <input type="password" id="senha"/><br/>
-	<button onclick="efetuarLogin()">Login</button><br/>
+	<button onclick="efetuarRegistro()">Registrar</button><br/>
 	Resultado: <input type="text" size="80" id="resultado"/><br/>
 </body>
 </html>

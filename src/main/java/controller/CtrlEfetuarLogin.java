@@ -22,7 +22,9 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.Response;
 import model.Usuario;
+import model.dao.DaoUsuario;
 
 @Path("/ctrlLogin")
 public class CtrlEfetuarLogin implements ICtrlEfetuarLogin {
@@ -96,20 +98,17 @@ public class CtrlEfetuarLogin implements ICtrlEfetuarLogin {
 		// valor de referência ao HttpSession do usuário
 		HttpSession sessao = request.getSession(true);
 		System.out.println("Usuário: " + usr);
-//		if(!Usuario.verificarUsuario(usr.getConta(), usr.getSenhaMD5()))
-//			enviarErro(HttpServletResponse.SC_FORBIDDEN, "Senha Inválida!");
+		DaoUsuario dao = new DaoUsuario();
+		Usuario busca = dao.buscarPorLoginESenha(usr.getEnderecoUsuario(), usr.getSenhaMD5());
+		if(busca == null)
+			enviarErro(HttpServletResponse.SC_FORBIDDEN, "Email ou senha Senha Inválida!");
 		
-		// Vou colocar na sessão do usuário uma informação indexada pela chave 'conta'
-		// que armazenará o nome da conta que efetuou o login. Isso vai marcar que a 
-		// sessão teve uma autenticação. O método setAttribute vincula ao Map da sessão 
-		// um dado indexado pela chave 'conta'
-		sessao.setAttribute("contaLogada", usr);
+		sessao.setAttribute("contaLogada", busca);
 		
 		// System.out.println(criptografar(usr.getConta()));
 		
 		// Retorno um texto dizendo que o login foi efetuado.
-//		return "Login da conta '" + usr.getConta() + "' feito com sucesso!";
-		return null;
+	return "Login de \"" + busca.getNomeUsuario() + "\" feito com sucesso!";
 	}
 
 	@Override
