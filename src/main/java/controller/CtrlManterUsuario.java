@@ -68,6 +68,14 @@ public class CtrlManterUsuario implements ICtrlManterUsuario {
 		//TODO O QUE ACONTECE COM AS RESPOSTAS DE USUARIO AO SEREM EXCLUIDAS?
 		return null;
 	}
+	
+	@Override
+	public Usuario consultarUsuario() {
+		System.out.println("--CONSULTAR USUARIO--");
+		HttpSession session = request.getSession();
+		return (Usuario) session.getAttribute("contaLogada");
+		
+	}
 
 	// Desconsiderar o código abaixo. Será útil para as futuras aulas
 	private static String chaveCriptografia = "0123456789abcdef";

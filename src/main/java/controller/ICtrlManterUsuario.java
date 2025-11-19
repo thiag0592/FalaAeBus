@@ -29,4 +29,8 @@ public interface ICtrlManterUsuario {
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Usuario removerUsuario(@PathParam("id") int id);
+
+	@GET
+	@Path("/consultarUsuario")	
+	public Usuario consultarUsuario();
 }
