@@ -1,7 +1,5 @@
 package model.dao;
 
-import java.util.List;
-
 import controller.ApplicationConfig;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;

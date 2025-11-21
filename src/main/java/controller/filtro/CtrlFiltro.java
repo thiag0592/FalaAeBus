@@ -1,4 +1,4 @@
-package controller;
+package controller.filtro;
 
 import java.io.IOException;
 
@@ -13,6 +13,7 @@ import jakarta.ws.rs.container.PreMatching;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.ext.Provider;
 import model.Usuario;
+import model.UsuarioAdm;
 
 @Provider
 @PreMatching
@@ -45,28 +46,37 @@ public class CtrlFiltro implements ContainerRequestFilter {
 		// a ação de login 
 		if(path.contains("Registro")) {
 			System.out.println("Requisição de Registro.");
-		} else if (!path.contains("login")) {
-			// Se o usuário fez o login, então na sessão temos um dado vinculado ao rótulo "contaLogada"
-			Usuario conta = (Usuario)sessao.getAttribute("contaLogada");
-			System.out.println("Conta Sessão: "+conta);
-			if(conta == null) 	{				
-				System.out.println("Não Autorizado");
-				throw new NotAuthorizedException("Não autorizado");
-			}
-			// Por curiosidade, vamos mostrar o JSESSIONID do usuário
-			for(Cookie biscoito : request.getCookies()) {
-				if(biscoito.getName().equals("JSESSIONID")) {
-					System.out.println("Requisição vinda de " + conta  + " " +
-							  " com JSESSIONID = " + biscoito.getValue());
-					break;
-				}
-			}
-		} else {
-			System.out.println("Requisição de login.");
+		} else if(path.contains("Login")) {
+			System.out.println("Requisição de Login.");
 		}
+		else if(path.contains("adm")){
+			validarUsuarioAdm(sessao);
+		}
+		else {
+			validarUsuario(sessao);
+		} 
+		
 		// Indicando o content type do body
 		System.out.println("->" + request.getContentType());
 		System.out.println("FIM FILTER ENTRADA");
+	}
+	
+	private void validarUsuario(HttpSession sessao) {
+		// Se o usuário fez o login, então na sessão temos um dado vinculado ao rótulo "contaLogada"
+		Usuario conta = (Usuario)sessao.getAttribute("contaLogada");
+		System.out.println("Conta Sessão: "+conta);
+		if(conta == null) 	{				
+			System.out.println("Não Autorizado");
+			throw new NotAuthorizedException("Não autorizado");
+		}
+	}
+	private void validarUsuarioAdm(HttpSession sessao) {
+		UsuarioAdm conta = (UsuarioAdm)sessao.getAttribute("contaAdm");
+		System.out.println("Conta Sessão: "+conta);
+		if(conta == null) 	{				
+			System.out.println("Não Autorizado");
+			throw new NotAuthorizedException("Não autorizado");
+		}
 	}
 }
 
