@@ -1,10 +1,13 @@
 package model;
 
 import jakarta.persistence.*;
+import model.exception.ModelException;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table
 public class Empresa {
 
     @Id @GeneratedValue
@@ -16,7 +19,7 @@ public class Empresa {
     private String nomeEmpresa;
 
     @OneToMany(mappedBy = "empresa")
-    private List<Linha> linhas = new ArrayList<>();
+    private List<Linha> linhas;
 
 
     public String getCnpj() { return cnpj; }

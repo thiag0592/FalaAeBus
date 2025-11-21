@@ -1,8 +1,10 @@
 package model;
 
 import jakarta.persistence.*;
+import model.exception.ModelException;
 
 @Entity
+@Table
 public class AvaliaLinha {
 	public enum Status{
 		AVALIADO,MEDIADO,RUIM,REGULAR,BOM,OTIMO

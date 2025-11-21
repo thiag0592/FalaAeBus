@@ -5,7 +5,7 @@ import java.util.List;
 import controller.ApplicationConfig;
 import jakarta.persistence.EntityManager;
 import model.Linha;
-import model.ModelException;
+import model.exception.ModelException;
 
 public class DaoLinha {
 

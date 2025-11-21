@@ -3,8 +3,8 @@ package model.dao;
 import controller.ApplicationConfig;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
-import model.ModelException;
 import model.Usuario;
+import model.exception.ModelException;
 
 public class DaoUsuario {
 

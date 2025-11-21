@@ -10,8 +10,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import model.exception.FluxoDeEstadoException;
 
 @Entity
+@Table
 public class AvaliacaoDescritiva {
 	public enum Status{
 		EM_ANALISE,APROVADO,REMOVIDO

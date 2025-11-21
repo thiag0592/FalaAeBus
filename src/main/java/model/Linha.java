@@ -3,6 +3,8 @@ package model;
 import java.util.List;
 
 import jakarta.persistence.*;
+import model.exception.FluxoDeEstadoException;
+import model.exception.ModelException;
 
 @Entity
 @Table
@@ -65,7 +67,7 @@ public class Linha {
     @ManyToOne(fetch = FetchType.LAZY)
     private Empresa empresa;
     
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "linha",fetch = FetchType.LAZY)
     private List<AvaliaLinha> avaliaLinha; 
     
  

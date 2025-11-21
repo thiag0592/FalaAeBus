@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Solicitação de Login</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+<script>
+async function efetuarLogin() {
+	let email = document.getElementById('email').value; 
+	let senha = document.getElementById('senha').value;
+    senha = CryptoJS.MD5(senha).toString();
+	
+    let url = 'http://localhost:8080/falaaebus/ws/ctrlLogin/login';
+	
+	let usuario = {
+		"enderecoUsuario" : email,
+		"senhaMD5" : senha
+	}
+
+	document.getElementById('resultado').value = JSON.stringify(usuario);	
+	
+	try {
+		let response = await fetch(url, {
+				method: 'POST',
+				headers: {
+			            'Content-Type': 'application/json'
+			    },
+				body: JSON.stringify(usuario)
+			});
+		if(!response.ok)
+			throw new Error(`Erro - status: ${response.status}`);
+		let resultadoLogin = await response.text();
+		document.getElementById('resultado').value = resultadoLogin;
+	} catch(e) {
+		document.getElementById('resultado').value = e;
+	}
+ }
+</script>
+
+</head>
+<body>
+	<h1>Login - prjEx02</h1>
+	Email: <input type="text" id="email"/><br/>
+	Senha: <input type="password" id="senha"/><br/>
+	<button onclick="efetuarLogin()">Login</button><br/>
+	Resultado: <input type="text" size="80" id="resultado"/><br/>
+</body>
+</html>

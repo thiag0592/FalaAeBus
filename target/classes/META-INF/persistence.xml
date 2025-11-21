@@ -11,7 +11,7 @@
         <class>model.UsuarioAdm </class>
         <class>model.Empresa</class>
         <class>model.Linha</class>
-        <class>model.AvaliacaoLinha</class>
+        <class>model.AvaliaLinha</class>
         <class>model.AvaliacaoDescritiva</class>
 
         <properties>
@@ -33,7 +33,7 @@
         <class>model.UsuarioAdm </class>
         <class>model.Empresa</class>
         <class>model.Linha</class>
-        <class>model.AvaliacaoLinha</class>
+        <class>model.AvaliaLinha</class>
         <class>model.AvaliacaoDescritiva</class>
 
         <properties>
