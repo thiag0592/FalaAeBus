@@ -6,8 +6,13 @@
              version="3.0">
              
     <persistence-unit name="tde5PU">
-        <class>model.Departamento</class>
         <class>model.Usuario</class>
+        <class>model.UsuarioEmpresa</class>
+        <class>model.UsuarioAdm </class>
+        <class>model.Empresa</class>
+        <class>model.Linha</class>
+        <class>model.AvaliacaoLinha</class>
+        <class>model.AvaliacaoDescritiva</class>
 
         <properties>
             <!-- Banco H2 em memória -->
@@ -22,14 +27,19 @@
             <property name="hibernate.format_sql" value="true"/>
         </properties>
     </persistence-unit>
-    <persistence-unit name="falaebus">
-        <class>model.Departamento</class>
+    <persistence-unit name="falaaebus">
         <class>model.Usuario</class>
+        <class>model.UsuarioEmpresa</class>
+        <class>model.UsuarioAdm </class>
+        <class>model.Empresa</class>
+        <class>model.Linha</class>
+        <class>model.AvaliacaoLinha</class>
+        <class>model.AvaliacaoDescritiva</class>
 
         <properties>
             <!-- Banco mysql xampp-->
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/falaebus"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/falaaebus"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.password" value=""/>
 

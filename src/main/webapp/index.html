@@ -10,7 +10,7 @@ async function efetuarLogin() {
 	let senha = document.getElementById('senha').value;
     senha = CryptoJS.MD5(senha).toString();
 	
-    let url = 'http://localhost:8080/tde5/ws/ctrlLogin/login';
+    let url = 'http://localhost:8080/falaaebus/ws/ctrlLogin/login';
 	
 	let usuario = {
 		"enderecoUsuario" : email,

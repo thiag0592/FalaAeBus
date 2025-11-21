@@ -17,7 +17,7 @@ import jakarta.ws.rs.ApplicationPath;
 @ApplicationPath("/ws") 
 public class ApplicationConfig extends ResourceConfig {
 	
-	public static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("tde5PU");
+	public static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("falaaebus");
 	
 	
 	// Construtor da classe

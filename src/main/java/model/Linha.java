@@ -1,9 +1,11 @@
 package model;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "linha")
+@Table
 public class Linha {
 	
 // ===============================
@@ -55,14 +57,16 @@ public class Linha {
     private int idLinha;
 
     @Column(nullable = false)
-    private int numeroLinha;
-
+    private int numeroLinha; 
     @Column(nullable = false)
     private String caminho;
 
-    @ManyToOne
-    @JoinColumn(name = "empresa_id")
+    
+    @ManyToOne(fetch = FetchType.LAZY)
     private Empresa empresa;
+    
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<AvaliaLinha> avaliaLinha; 
     
  
 	@Enumerated(EnumType.STRING)

@@ -7,7 +7,8 @@ import java.util.List;
 @Entity
 public class Empresa {
 
-    @Id
+    @Id @GeneratedValue
+    private int id;
     @Column(length = 18, nullable = false)
     private String cnpj;
 
