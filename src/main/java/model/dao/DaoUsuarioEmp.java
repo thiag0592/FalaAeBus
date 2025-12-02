@@ -8,14 +8,14 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceException;
 import jakarta.persistence.TypedQuery;
 import jakarta.xml.bind.DatatypeConverter;
-import model.Usuario;
+import model.UsuarioAdm;
 import model.exception.ModelException;
 
-public class DaoUsuario {
+public class DaoUsuarioEmp {
 
 	private static EntityManager em = ApplicationConfig.entityManager;
 	
-    public void incluirUsuario(Usuario usuario) throws ModelException {
+    public void incluirUsuario(UsuarioAdm usuario) throws ModelException {
     	em.getTransaction().begin();
     	System.out.println("Entity Manager criado, começando transação");
         try{
@@ -27,14 +27,14 @@ public class DaoUsuario {
 		}
     }
     
-    public Usuario obterUsuarioPeloCpf(String cpf) {
-		TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.cps = :cpf", Usuario.class);
+    public UsuarioAdm obterUsuarioPeloCpf(String cpf) {
+		TypedQuery<UsuarioAdm> query = em.createQuery("SELECT u FROM Usuario u WHERE u.cps = :cpf", UsuarioAdm.class);
         query.setParameter("cpf", cpf);
 		return query.getSingleResult();
 	}	
 
 	public boolean verificarUsuario(String cpf, String senhaMD5) {
-		Usuario usr = this.obterUsuarioPeloCpf(cpf);
+		UsuarioAdm usr = this.obterUsuarioPeloCpf(cpf);
 		if(usr == null)
 			return false;
 		if(!usr.getSenhaMD5().equals(senhaMD5.toUpperCase()))
@@ -42,7 +42,7 @@ public class DaoUsuario {
 		return true;
 	}
 
-	public void alterarUsuario(Usuario alt) throws ModelException {
+	public void alterarUsuario(UsuarioAdm alt) throws ModelException {
 		em.getTransaction().begin();
 		try {
 			em.persist(alt);
@@ -65,12 +65,12 @@ public class DaoUsuario {
 	}
     
 
-    public Usuario buscarPorLoginESenha(String cpf, String senhaMD5) {
+    public UsuarioAdm buscarPorLoginESenha(String cpf, String senhaMD5) {
         EntityManager em = ApplicationConfig.emf.createEntityManager();
         try(em) {
-            TypedQuery<Usuario> query = em.createQuery(
+            TypedQuery<UsuarioAdm> query = em.createQuery(
                 "SELECT u FROM Usuario u WHERE u.enderecoUsuario = :cpf AND u.senhaMD5 = :senhaMD5",
-                Usuario.class
+                UsuarioAdm.class
             );
             query.setParameter("cpf", cpf);
             query.setParameter("senhaMD5", senhaMD5);

@@ -16,13 +16,14 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.Context;
 import model.Usuario;
 import model.dao.DaoUsuario;
+import model.exception.ModelException;
 
 // 
 // http://127.0.0.1:8080/prjEx02Rest/application.wadl?
 //
 
 @Path("/Usuario")
-public class CtrlManterUsuario implements ICtrlManterUsuario {
+public class CtrlIncluirUsuario implements ICtrlIncluirUsuario {
 
 	@Context
 	private HttpServletRequest request;
@@ -38,13 +39,18 @@ public class CtrlManterUsuario implements ICtrlManterUsuario {
 	//
 	// MÉTODOS
 	//
-	public CtrlManterUsuario() {
+	public CtrlIncluirUsuario() {
 		System.out.println("Um objeto CtrlManterUsuario foi instanciado!!!");
 	}
 
 	@Override
-	public Usuario incluirUsuario(Usuario novo) {
-		System.out.println("incluindo usuario");
+	public Usuario incluirUsuario(Usuario novo)throws ModelException, ControllerException {
+		try {
+			System.out.println("incluindo usuario");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		DaoUsuario dao = new DaoUsuario();
 		dao.incluirUsuario(novo);
 
@@ -54,25 +60,12 @@ public class CtrlManterUsuario implements ICtrlManterUsuario {
 	}
 
 	/*
-	 * @Override public Usuario alterarUsuario(Usuario modificacao) {
-	 * System.out.println("---ALTERAR USUARIO---"); DaoUsuario dao = new
-	 * DaoUsuario(); HttpSession session = request.getSession(); Usuario usrSession
-	 * = (Usuario) session.getAttribute("contaLogada");
-	 * modificacao.setIdUsuario(usrSession.getIdUsuario()); return
-	 * dao.alterarUsuario(modificacao); }
+	 * @Override public Usuario consultarUsuario() {
+	 * System.out.println("--CONSULTAR USUARIO--"); HttpSession session =
+	 * request.getSession(); return (Usuario) session.getAttribute("contaLogada");
 	 * 
-	 * @Override public Usuario removerUsuario(int id) { //TODO O QUE ACONTECE COM
-	 * AS RESPOSTAS DE USUARIO AO SEREM EXCLUIDAS? return null; }
+	 * }
 	 */
-
-	@Override
-	public Usuario consultarUsuario() {
-		System.out.println("--CONSULTAR USUARIO--");
-		HttpSession session = request.getSession();
-		return (Usuario) session.getAttribute("contaLogada");
-
-	}
-
 	
 	 // Desconsiderar o código abaixo. Será útil para as futuras aulas private
 	 static String chaveCriptografia = "0123456789abcdef"; private static byte[]

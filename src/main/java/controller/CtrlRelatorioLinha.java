@@ -10,8 +10,8 @@ import jakarta.ws.rs.core.Context;
 import model.AvaliaLinha;
 import model.dao.DaoAvaliaLinha;
 
-@Path("/{tipo:(adm|emp)}/relatoriogeral")
-public class CtrlRelatorioGeral implements ICtrlRelatorioGeral {
+@Path("/{tipo:(adm|emp)}/relatoriolinha")
+public class CtrlRelatorioLinha implements ICtrlRelatorioLinha{
 
 	List<AvaliaLinha> avaliacoes;
 	
@@ -21,13 +21,13 @@ public class CtrlRelatorioGeral implements ICtrlRelatorioGeral {
 	@Context
 	private HttpServletResponse response;
 	
-	public CtrlRelatorioGeral() {
+	public CtrlRelatorioLinha() {
 	}
 	
 	@Override
-	public DtoRelatorio GeraRelatorio(String cnpj) {
+	public DtoRelatorio GeraRelatorio(String cnpj, String numeroLinha) {
 		DaoAvaliaLinha daoAvalia = new DaoAvaliaLinha();
-		avaliacoes = daoAvalia.obterTodasDeUmaEmpresa(cnpj);
+		avaliacoes = daoAvalia.obterTodasDeUmaLinha(numeroLinha,cnpj);
 		int contador = 0;
 		int nAr=0;
 		int nManut=0;
@@ -48,7 +48,7 @@ public class CtrlRelatorioGeral implements ICtrlRelatorioGeral {
 		nLotaPass=nLotaPass/contador;
 		
 		int mediaAv=(nAr+nManut+nDistHor+nLotaPass)/4;
-
+		
 		DtoRelatorio relatorio = new DtoRelatorio(nAr,nManut,nLotaPass,nDistHor);
 		
 		relatorio.processarCalculoDeMedia(mediaAv);

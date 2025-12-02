@@ -5,11 +5,9 @@ import java.util.List;
 import controller.ApplicationConfig;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceException;
-import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import model.AvaliaLinha;
 import model.exception.ModelException;
-import model.Empresa;
 
 public class DaoAvaliaLinha {
 
@@ -27,7 +25,7 @@ public class DaoAvaliaLinha {
 		}
 	}
 	
-	public List<AvaliaLinha> obterTodasDeEmpresa(String cnpj) {
+	public List<AvaliaLinha> obterTodasDeUmaEmpresa(String cnpj) {
 		
 		TypedQuery<AvaliaLinha> query = em.createQuery(
 			    "SELECT al FROM AvaliaLinha al " +
@@ -42,6 +40,19 @@ public class DaoAvaliaLinha {
 		return resultado;
 	}
 	
-	
+	public List<AvaliaLinha> obterTodasDeUmaLinha(String numero, String cnpj){
+	    TypedQuery<AvaliaLinha> query = em.createQuery(
+	        "SELECT al FROM AvaliaLinha al " +
+	        "WHERE al.linha.numLinha = :numero " +
+	        "AND al.linha.empresa.cnpj = :cnpj",
+	        AvaliaLinha.class
+	    );
+
+	    query.setParameter("numero", numero);
+	    query.setParameter("cnpj", cnpj);
+
+	    return query.getResultList();
+	}
+
 	
 }

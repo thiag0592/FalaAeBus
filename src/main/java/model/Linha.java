@@ -59,7 +59,7 @@ public class Linha {
     private int idLinha;
 
     @Column(nullable = false)
-    private int numeroLinha; 
+    private String numeroLinha; 
     @Column(nullable = false)
     private String caminho;
 
@@ -100,12 +100,12 @@ public class Linha {
     public int getIdLinha() { return idLinha; }
     public void setIdLinha(int idLinha) { this.idLinha = idLinha; }
 
-    public int getNumeroLinha() { return numeroLinha; }
-    public void setNumeroLinha(int numeroLinha) throws ModelException 
+    public String getNumeroLinha() { return numeroLinha; }
+    public void setNumeroLinha(String numeroLinha) throws ModelException 
     { validarNumero(numeroLinha); this.numeroLinha = numeroLinha; }
     
-    private void validarNumero(int numero) throws ModelException {
-        if (numero <= 0) {
+    private void validarNumero(String numero) throws ModelException {
+        if (numero != null) {
             throw new ModelException("O número da linha deve ser positivo.");
         }
     }

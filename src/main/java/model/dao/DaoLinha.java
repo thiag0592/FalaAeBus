@@ -4,21 +4,28 @@ import java.util.List;
 
 import controller.ApplicationConfig;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceException;
+import jakarta.persistence.TypedQuery;
 import model.Linha;
 import model.exception.ModelException;
 
 public class DaoLinha {
 
-    public Linha incluirUsuario(Linha l) {
-    	System.out.println("Criando entityManager");
-    	EntityManager em = ApplicationConfig.emf.createEntityManager();
-    	System.out.println("Entity Manager criado, começando transação");
-        try(em) {
-            em.getTransaction().begin();
+	private static EntityManager em = ApplicationConfig.entityManager;
+	
+	public DaoLinha() {
+		super();
+	}
+	
+    public void incluirLinha(Linha l) throws ModelException {
+    	em.getTransaction().begin();
+        try {
             em.persist(l);
             em.getTransaction().commit();
-        }
-        return l;
+        } catch (PersistenceException e) {
+			// em.getTransaction().rollback();
+			throw new ModelException(e.getMessage());
+		}
     }
 
 	public List<Linha> obterLinhas() {
@@ -26,6 +33,12 @@ public class DaoLinha {
 		try(em){
 			return em.createQuery("SELECT l FROM Linha l", Linha.class).getResultList();
 		}
+	}
+	
+	public Linha obterLinhaPeloNumero(String numero) {
+		TypedQuery<Linha> query = em.createQuery("SELECT l FROM Linha a WHERE l.numero = :numero", Linha.class);
+        query.setParameter("numero", numero);
+		return query.getSingleResult();
 	}
 
 	public Linha alterarLinha(Linha novosDados) {
@@ -46,7 +59,7 @@ public class DaoLinha {
 	                existente.setCaminho(novosDados.getCaminho());
 	            }
 
-	            if (novosDados.getNumeroLinha() != 0) {
+	            if (novosDados.getNumeroLinha() != null) {
 	                existente.setNumeroLinha(novosDados.getNumeroLinha());
 	            }
 
@@ -67,6 +80,22 @@ public class DaoLinha {
 				return null;
 			}
 		
+	}
+
+	public Linha obterPorNumeroECnpj(String numero, String cnpj) {
+	    TypedQuery<Linha> query = em.createQuery(
+	            "SELECT l FROM Linha l " +
+	            "WHERE l.numeroLinha = :numero " +
+	            "AND l.empresa.cnpj = :cnpj",
+	            Linha.class
+	    );
+
+	    query.setParameter("numero", numero);
+	    query.setParameter("cnpj", cnpj);
+
+	    // Retorna a linha ou null caso não exista
+	    List<Linha> resultado = query.getResultList();
+	    return resultado.isEmpty() ? null : resultado.get(0);
 	}
 
 

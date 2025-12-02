@@ -6,9 +6,9 @@ import model.exception.ModelException;
 @Entity
 @Table
 public class AvaliaLinha {
-	public enum Status{
-		AVALIADO,MEDIADO,RUIM,REGULAR,BOM,OTIMO
-	}
+	/*
+	 * public enum Status{ AVALIADO,MEDIADO,RUIM,REGULAR,BOM,OTIMO }
+	 */
     @Id
     @GeneratedValue
     private int id;
@@ -37,36 +37,24 @@ public class AvaliaLinha {
     @ManyToOne(optional = false)
     private Usuario usuario;
 
-    // Uma avaliação PODE ter uma avaliação descritiva
-    @OneToOne(optional = true)
-    private AvaliacaoDescritiva avaliacaoDescritiva;
+    
 
     
     
     
-    private Status status;
-    public void processarCalculoDeMedia(double media) {
-
-        // Estado: Avaliado → Mediado
-        setStatus(Status.MEDIADO);
-
-        // Estado: Mediated → Classificação final
-        if (media >= 1.0 && media <= 1.9) {
-            setStatus(Status.RUIM);
-        }
-        else if (media >= 2.0 && media <= 2.9) {
-            setStatus(Status.REGULAR);
-        }
-        else if (media >= 3.0 && media <= 3.9) {
-            setStatus(Status.BOM);
-        }
-        else if (media >= 4.0 && media <= 5.0) {
-            setStatus(Status.OTIMO);
-        }
-        else {
-            throw new IllegalArgumentException("Média fora do intervalo 1 a 5.");
-        }
-    }
+    //private Status status;
+	/*
+	 * public void processarCalculoDeMedia(double media) {
+	 * 
+	 * // Estado: Avaliado → Mediado setStatus(Status.MEDIADO);
+	 * 
+	 * // Estado: Mediated → Classificação final if (media >= 1.0 && media <= 1.9) {
+	 * setStatus(Status.RUIM); } else if (media >= 2.0 && media <= 2.9) {
+	 * setStatus(Status.REGULAR); } else if (media >= 3.0 && media <= 3.9) {
+	 * setStatus(Status.BOM); } else if (media >= 4.0 && media <= 5.0) {
+	 * setStatus(Status.OTIMO); } else { throw new
+	 * IllegalArgumentException("Média fora do intervalo 1 a 5."); } }
+	 */
     // ========================
     //   GETTERS / SETTERS / VALIDAR
     // ========================
@@ -102,8 +90,8 @@ public class AvaliaLinha {
 
     
     
-    public Status getStatus() { return status; }
-	public void setStatus(Status status) { this.status = status; }
+    //public Status getStatus() { return status; }
+	//public void setStatus(Status status) { this.status = status; }
 
 
 	// --- Linha ---
@@ -114,8 +102,6 @@ public class AvaliaLinha {
     public Usuario getUsuario() { return usuario; }
     public void setUsuario(Usuario usuario) { this.usuario = usuario; }
 
-    // --- Avaliação Descritiva ---
-    public AvaliacaoDescritiva getAvaliacaoDescritiva() { return avaliacaoDescritiva; }
-    public void setAvaliacaoDescritiva(AvaliacaoDescritiva avaliacaoDescritiva) 
-    { this.avaliacaoDescritiva = avaliacaoDescritiva;}
+
+
 }

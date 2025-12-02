@@ -10,6 +10,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import model.Linha;
+import model.exception.ModelException;
 
 public interface ICtrlManterLinha {
 
@@ -17,7 +18,7 @@ public interface ICtrlManterLinha {
 	@Path("/criarLinha")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public void incluirLinha(Linha l);
+	public void incluirLinha(Linha l) throws ModelException;
 
 	@GET
 	@Path("/obterLinhas")

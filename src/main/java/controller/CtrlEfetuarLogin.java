@@ -1,5 +1,9 @@
 package controller;
 
+import static controller.ApplicationConfig.CH_USUARIO_ATUAL;
+import static controller.ApplicationConfig.CH_ADM_ATUAL;
+import static controller.ApplicationConfig.CH_EMP_ATUAL;
+
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -22,8 +26,9 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.Context;
-import jakarta.ws.rs.core.Response;
 import model.Usuario;
+import model.UsuarioAdm;
+import model.UsuarioEmpresa;
 import model.dao.DaoUsuario;
 
 @Path("/ctrlLogin")
@@ -46,6 +51,9 @@ public class CtrlEfetuarLogin implements ICtrlEfetuarLogin {
 	 */ 
 	@Context
 	private HttpServletRequest request;
+	
+	@Context
+	private HttpServletResponse response;
 
 	//
 	// MÉTODOS
@@ -69,20 +77,19 @@ public class CtrlEfetuarLogin implements ICtrlEfetuarLogin {
 	 * Verifica se o usuário efetuou previamente um login
 	 * @return
 	 */
-	public static boolean sessaoValida(HttpServletRequest request) {
-		// Recupero o HttpSession vinculado à requisição
-		HttpSession sessao = request.getSession();
-		// Verifico no HttpSession se há algo indexado com a chave 'contaLogada'
-		String conta = (String) sessao.getAttribute("contaLogada");
-		// Se não houver algo indexado, é porque ele não efetuou previamente o login
-		if (conta == null) {
-			// Envio erro com código FORBIDDEN (403) do http.
-			enviarErro(HttpServletResponse.SC_FORBIDDEN, "Login não efetuado");
-			return false;
-		}
-		// O usuário efetuou previamente o login.
-		return true;
-	}
+	
+	/*
+	 * public static boolean sessaoValida(HttpServletRequest request) { // Recupero
+	 * o HttpSession vinculado à requisição HttpSession sessao =
+	 * request.getSession(); // Verifico no HttpSession se há algo indexado com a
+	 * chave 'contaLogada' String conta = (String)
+	 * sessao.getAttribute("contaLogada"); // Se não houver algo indexado, é porque
+	 * ele não efetuou previamente o login if (conta == null) { // Envio erro com
+	 * código FORBIDDEN (403) do http. enviarErro(HttpServletResponse.SC_FORBIDDEN,
+	 * "Login não efetuado"); return false; } // O usuário efetuou previamente o
+	 * login. return true; }
+	 */
+	 
 
 	/**
 	 *  Toda vez que chegar uma requisição, o Jersey Servlet vai injetar no parâmetro
@@ -91,37 +98,65 @@ public class CtrlEfetuarLogin implements ICtrlEfetuarLogin {
 	 *  ter acesso ao objeto HttpSession
 	 */ 
 	@Override
-	public String login(Usuario usr) {
-		//Usuario usr = new Usuario("alessandro","mala");
-		// Crio uma nova sessão (pois estamos passando o parâmetro true
-		// Com isso, a resposta enviará o Cookie JSESSIONID que indica o 
-		// valor de referência ao HttpSession do usuário
-		HttpSession sessao = request.getSession(true);
+	public String loginUsuario(Usuario usr) {
 		System.out.println("Usuário: " + usr);
 		DaoUsuario dao = new DaoUsuario();
-		Usuario busca = dao.buscarPorLoginESenha(usr.getEnderecoUsuario(), usr.getSenhaMD5());
-		if(busca == null)
-			enviarErro(HttpServletResponse.SC_FORBIDDEN, "Email ou senha Senha Inválida!");
+		Usuario usuario = dao.obterUsuarioPeloCpf(usr.getCpfUsuario());
+		if(usuario == null) {
+			enviarErro(HttpServletResponse.SC_FORBIDDEN, "Usuário Inválido!");
+			return null;
+		}
 		
-		sessao.setAttribute("contaLogada", busca);
-		
-		// System.out.println(criptografar(usr.getConta()));
+		if(!usuario.getSenhaMD5().toUpperCase().equals(usr.getSenhaMD5().toUpperCase())) {
+			enviarErro(HttpServletResponse.SC_FORBIDDEN, "Senha Inválida!");
+			return null;
+		}
+	
+		HttpSession sessao = request.getSession(true);
+		sessao.setAttribute(CH_USUARIO_ATUAL, usuario);
 		
 		// Retorno um texto dizendo que o login foi efetuado.
-	return "Login de \"" + busca.getNomeUsuario() + "\" feito com sucesso!";
+		return "Login da conta '" + usr.getCpfUsuario() + "' feito com sucesso!";
+	}
+
+
+	@Override
+	public String loginAdm(UsuarioAdm usr) {
+		/*
+		System.out.println("Usuário Adm: " + usr);
+		DaoUsuarioAdm dao = new DaoUsuarioAdm();
+		UsuarioAdm adm = dao.obterUsuarioPeloCpf(usr.getCpfUsuario());
+		if(adm == null) {
+			enviarErro(HttpServletResponse.SC_FORBIDDEN, "Usuário Inválido!");
+			return null;
+		}
+		
+		if(!adm.getSenhaMD5().toUpperCase().equals(usr.getSenhaMD5().toUpperCase())) {
+			enviarErro(HttpServletResponse.SC_FORBIDDEN, "Senha Inválida!");
+			return null;
+		}
+	
+		HttpSession sessao = request.getSession(true);
+		sessao.setAttribute(CH_ADM_ATUAL, adm);
+		
+		// Retorno um texto dizendo que o login foi efetuado.
+		return "Login da conta '" + usr.getCpfUsuario() + "' feito com sucesso!";
+		*/
+		return null;
+	}
+	
+	@Override
+	public String loginEmp(UsuarioEmpresa usr) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public String logoff() {
-		// recuperamos a sessão do usuário 
 		HttpSession sessao = request.getSession();
-		sessao.setMaxInactiveInterval(0);
-		// Verifico se o usuário, de fato, estava logado
-		Usuario usr = (Usuario)sessao.getAttribute("contaLogada");
-		sessao.removeAttribute("contaLogada");
-		// Retorno um texto dizendo que o login foi efetuado.
-		//return "Logoff da conta '" + usr.getConta() + "' feito com sucesso!";
-		return null;
+		Usuario atual = (Usuario)sessao.getAttribute(CH_USUARIO_ATUAL);
+		request.getSession(true);
+		return "Logoff da conta '" + atual.getCpfUsuario() + "' feito com sucesso!";
 	}
 
 	// Desconsiderar o código abaixo. Será útil para as futuras aulas
