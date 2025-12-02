@@ -21,7 +21,6 @@ public interface ICtrlAvaliarLinha {
 	
 	@GET
     @Path("/iniciar")
-    @Consumes(MediaType.APPLICATION_JSON)
 	boolean iniciar() throws ModelException, ControllerException;
 
 	@POST
@@ -36,7 +35,6 @@ public interface ICtrlAvaliarLinha {
 
 	@POST
     @Path("/efetivaravaliacao")
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
 	AvaliaLinha efetivarAvaliacao() throws ModelException, ControllerException;
 

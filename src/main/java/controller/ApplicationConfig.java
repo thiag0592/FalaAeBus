@@ -8,8 +8,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.ws.rs.ApplicationPath;
-import model.UsuarioAdm;
-import model.exception.ModelException;
 
 //
 // No web.xml há uma indicação para o Jersey Servlet carregar esta classe
@@ -22,7 +20,7 @@ import model.exception.ModelException;
 @ApplicationPath("/ws") 
 public class ApplicationConfig extends ResourceConfig {
 	
-	public static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("tde5PU");
+	public static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("falaaebus");
 	
 	final public static EntityManager entityManager = emf.createEntityManager();
 	
@@ -32,6 +30,7 @@ public class ApplicationConfig extends ResourceConfig {
 	final public static String CH_EMP_ATUAL = "Emp da Sessão";	
 	
 	// Precisei adicionar, usando como base o código de alessandro, se vc tiver outra ideia, tô aberto a sugestões
+	// Pela falta de resposta, não teve sugestões
 	final public static String CH_UC_EM_EXECUCAO = "Caso de Uso em Execução";
 	final public static String CH_PROXIMO_PASSO = "Próximo Passo";
 

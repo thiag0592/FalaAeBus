@@ -5,12 +5,16 @@ import java.util.List;
 import dto.DtoRelatorio;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.Context;
 import model.AvaliaLinha;
+import model.UsuarioEmpresa;
 import model.dao.DaoAvaliaLinha;
 
-@Path("/{tipo:(adm|emp)}/relatoriolinha")
+import static controller.ApplicationConfig.CH_EMP_ATUAL;
+
+@Path("/{tipo:(adm|repemp)}/relatoriolinha")
 public class CtrlRelatorioLinha implements ICtrlRelatorioLinha{
 
 	List<AvaliaLinha> avaliacoes;
@@ -25,7 +29,17 @@ public class CtrlRelatorioLinha implements ICtrlRelatorioLinha{
 	}
 	
 	@Override
-	public DtoRelatorio GeraRelatorio(String cnpj, String numeroLinha) {
+	public DtoRelatorio GeraRelatorio(String tipo, String cnpj, String numeroLinha) throws ControllerException {
+		
+		if(tipo.contentEquals("repemp")){
+			HttpSession session = request.getSession();
+			UsuarioEmpresa emp = (UsuarioEmpresa) session.getAttribute(CH_EMP_ATUAL);
+			if(emp==null)
+				throw new ControllerException("Acesso negado: empresa inválida");
+			if(!cnpj.equals(emp.getCnpj()))
+				throw new ControllerException("Acesso negado: você só pode ver o relatório da sua empresa.");
+		}
+		
 		DaoAvaliaLinha daoAvalia = new DaoAvaliaLinha();
 		avaliacoes = daoAvalia.obterTodasDeUmaLinha(numeroLinha,cnpj);
 		int contador = 0;

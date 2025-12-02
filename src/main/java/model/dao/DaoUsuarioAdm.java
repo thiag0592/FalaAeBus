@@ -32,6 +32,11 @@ public class DaoUsuarioAdm {
 		query.setParameter("cpf", cpf);
 		return query.getSingleResult();
 	}
+	
+	public boolean isAdmAtivo(String cpf) {
+		UsuarioAdm adm = obterUsuarioAdmPeloCpf(cpf);
+		return adm.isIdAdm();
+	}
 
 	public boolean verificarUsuarioAdm(String cpf, String senhaMD5) {
 		UsuarioAdm usr = this.obterUsuarioAdmPeloCpf(cpf);
@@ -42,7 +47,7 @@ public class DaoUsuarioAdm {
 		return true;
 	}
 
-	public void alterarUsuario(UsuarioAdm alt) throws ModelException {
+	public void alterarUsuarioAdm(UsuarioAdm alt) throws ModelException {
 		em.getTransaction().begin();
 		try {
 			em.persist(alt);

@@ -17,13 +17,13 @@ public interface ICtrlEfetuarLogin {
 	public String loginUsuario(Usuario usr);
 
 	@POST
-	@Path("login/Adm")
+	@Path("login/adm")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String loginAdm(UsuarioAdm usr);
 
 	@POST
-	@Path("login/Emp")
+	@Path("login/repemp")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String loginEmp(UsuarioEmpresa usr);
@@ -32,4 +32,14 @@ public interface ICtrlEfetuarLogin {
 	@Path("logoff")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String logoff() throws Exception;
+
+	@POST
+	@Path("logoffAdm")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String logoffADM();
+
+	@POST
+	@Path("logoffEmp")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String logoffEmp();
 }

@@ -17,7 +17,6 @@ public interface ICtrlManterLinha {
 	@POST
 	@Path("/criarLinha")
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
 	public void incluirLinha(Linha l) throws ModelException;
 
 	@GET
@@ -27,6 +26,10 @@ public interface ICtrlManterLinha {
 
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
 	void alterarLinha(Linha l);
+
+	@GET
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	Linha listarLinha(String id) throws ControllerException;
 }

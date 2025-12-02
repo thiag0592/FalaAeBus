@@ -12,17 +12,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.Context;
-import model.Usuario;
-import model.dao.DaoUsuario;
+import model.UsuarioAdm;
+import model.dao.DaoUsuarioAdm;
 import model.exception.ModelException;
 
-import static controller.ApplicationConfig.CH_USUARIO_ATUAL;
 // 
 // http://127.0.0.1:8080/prjEx02Rest/application.wadl?
 //
 
-@Path("/Usuario")
-public class CtrlIncluirUsuario implements ICtrlIncluirUsuario {
+@Path("/adm/UsuarioAdm")
+public class CtrlIncluirUsuarioAdm implements ICtrlIncluirUsuarioAdm {
 
 	@Context
 	private HttpServletRequest request;
@@ -32,29 +31,28 @@ public class CtrlIncluirUsuario implements ICtrlIncluirUsuario {
 	 * (Class.forName)
 	 */
 	static {
-		System.out.println("Bytecode da classe CtrlManterUsuario foi carregado!");
+		System.out.println("Bytecode da classe CtrlManterUsuarioADM foi carregado!");
 	}
 
 	//
 	// MÉTODOS
 	//
-	public CtrlIncluirUsuario() {
-		System.out.println("Um objeto CtrlManterUsuario foi instanciado!!!");
+	public CtrlIncluirUsuarioAdm() {
+		System.out.println("Um objeto CtrlManterUsuarioADM foi instanciado!!!");
 	}
 
 	@Override
-	public Usuario incluirUsuario(Usuario novo)throws ModelException, ControllerException {
+	public UsuarioAdm incluirUsuarioAdm(UsuarioAdm novo)throws ModelException, ControllerException {
 		try {
 			System.out.println("incluindo usuario");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DaoUsuario dao = new DaoUsuario();
-		dao.incluirUsuario(novo);
+		DaoUsuarioAdm dao = new DaoUsuarioAdm();
+		dao.incluirUsuarioAdm(novo);
 
-		HttpSession sessao = request.getSession(true);
-		sessao.setAttribute(CH_USUARIO_ATUAL, novo);
+
 		return novo;
 	}
 

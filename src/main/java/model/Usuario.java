@@ -40,7 +40,7 @@ public class Usuario implements Serializable {
 	private String cpfUsuario;
 
 	@Column(nullable = false, unique = true)
-	private String enderecoUsuario;
+	private String email;
 
 	@Column(nullable = false)
 	private String senhaMD5;
@@ -166,13 +166,13 @@ public class Usuario implements Serializable {
 	}
 
 	public String getEnderecoUsuario() {
-		return enderecoUsuario;
+		return email;
 	}
 
 	// Endereço de email
 	public void setEnderecoUsuario(String enderecoUsuario) throws ModelException {
 		validarEnderecoEmail(enderecoUsuario);
-		this.enderecoUsuario = enderecoUsuario;
+		this.email = enderecoUsuario;
 	}
 
 	public static void validarEnderecoEmail(String email) throws ModelException {

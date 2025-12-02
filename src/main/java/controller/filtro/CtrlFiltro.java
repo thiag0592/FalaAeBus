@@ -2,7 +2,6 @@ package controller.filtro;
 
 import java.io.IOException;
 
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -14,6 +13,11 @@ import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.ext.Provider;
 import model.Usuario;
 import model.UsuarioAdm;
+import model.UsuarioEmpresa;
+
+import static controller.ApplicationConfig.CH_USUARIO_ATUAL;
+import static controller.ApplicationConfig.CH_ADM_ATUAL;
+import static controller.ApplicationConfig.CH_EMP_ATUAL;
 
 @Provider
 @PreMatching
@@ -51,7 +55,9 @@ public class CtrlFiltro implements ContainerRequestFilter {
 		}
 		else if(path.contains("adm")){
 			validarUsuarioAdm(sessao);
-		}
+		}else if(path.contains("repemp")){ //repemp - representante empresa
+			validarUsuarioEmp(sessao);
+		} 
 		else {
 			validarUsuario(sessao);
 		} 
@@ -63,7 +69,7 @@ public class CtrlFiltro implements ContainerRequestFilter {
 	
 	private void validarUsuario(HttpSession sessao) {
 		// Se o usuário fez o login, então na sessão temos um dado vinculado ao rótulo "contaLogada"
-		Usuario conta = (Usuario)sessao.getAttribute("contaLogada");
+		Usuario conta = (Usuario)sessao.getAttribute(CH_USUARIO_ATUAL);
 		System.out.println("Conta Sessão: "+conta);
 		if(conta == null) 	{				
 			System.out.println("Não Autorizado");
@@ -71,7 +77,15 @@ public class CtrlFiltro implements ContainerRequestFilter {
 		}
 	}
 	private void validarUsuarioAdm(HttpSession sessao) {
-		UsuarioAdm conta = (UsuarioAdm)sessao.getAttribute("contaAdm");
+		UsuarioAdm conta = (UsuarioAdm)sessao.getAttribute(CH_ADM_ATUAL);
+		System.out.println("Conta Sessão: "+conta);
+		if(conta == null) 	{				
+			System.out.println("Não Autorizado");
+			throw new NotAuthorizedException("Não autorizado");
+		}
+	}
+	private void validarUsuarioEmp(HttpSession sessao) {
+		UsuarioEmpresa conta = (UsuarioEmpresa)sessao.getAttribute(CH_EMP_ATUAL);
 		System.out.println("Conta Sessão: "+conta);
 		if(conta == null) 	{				
 			System.out.println("Não Autorizado");

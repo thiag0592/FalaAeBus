@@ -38,11 +38,12 @@ public class CtrlManterLinha implements ICtrlManterLinha {
 		
 	}
 	
+	@Override
 	public Linha listarLinha(String id) throws ControllerException{
 		DaoLinha dao = new DaoLinha();
 		Linha l = dao.obterLinhaPeloNumero(id);
 		if(l == null)
-			throw new ControllerException("Agencia não encontrada!");
+			throw new ControllerException("Linha não encontrada!");
 		return l;
 	}
 	

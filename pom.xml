@@ -6,7 +6,7 @@
 	<artifactId>tde5</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-
+	<!-- Quis mudar o nome do groupID e do artifactId, mas o medo de dar ruim foi maior-->
 	<properties>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>

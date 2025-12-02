@@ -1,20 +1,15 @@
 package controller;
 
-import java.util.Collection;
-
 import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import model.Usuario;
+import model.UsuarioEmpresa;
 import model.exception.ModelException;
 
-public interface ICtrlAlterarUsuario {
+public interface ICtrlAlterarUsuarioEmp {
 	/*
 	 * @POST
 	 * 
@@ -31,13 +26,13 @@ public interface ICtrlAlterarUsuario {
 	  @Path("/alterarUsuario")
 	  @Consumes(MediaType.APPLICATION_JSON)
 	  @Produces(MediaType.APPLICATION_JSON) 
-	  public Usuario alterarUsuario(Usuario modificacao) throws ModelException;
+	  public UsuarioEmpresa alterarUsuarioEmp(UsuarioEmpresa modificacao) throws ModelException;
 	  
 	  
 	 
 
 	@GET
-	@Path("/consultarUsuario")
-	@Produces(MediaType.APPLICATION_JSON) 
-	public Usuario consultarUsuario();
+	@Path("/consultarUsuario")	
+	@Produces(MediaType.APPLICATION_JSON)
+	public UsuarioEmpresa consultarUsuarioEmp();
 }

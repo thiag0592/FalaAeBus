@@ -6,13 +6,14 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import model.Usuario;
+import model.UsuarioEmpresa;
 import model.exception.ModelException;
 
-public interface ICtrlIncluirUsuario {
+public interface ICtrlIncluirUsuarioEmp {
 	@POST
-	@Path("/Registro")
+	@Path("/incluir")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Usuario incluirUsuario(Usuario novo) throws ModelException, ControllerException;
+	public Usuario incluirUsuarioEmp(UsuarioEmpresa novo) throws ModelException, ControllerException;
 
 }

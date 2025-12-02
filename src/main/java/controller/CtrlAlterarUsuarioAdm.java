@@ -12,17 +12,18 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.Context;
-import model.Usuario;
-import model.dao.DaoUsuario;
+import model.UsuarioAdm;
+import model.dao.DaoUsuarioAdm;
 import model.exception.ModelException;
 
-import static controller.ApplicationConfig.CH_USUARIO_ATUAL;
+import static controller.ApplicationConfig.CH_ADM_ATUAL;
+
 // 
 // http://127.0.0.1:8080/prjEx02Rest/application.wadl?
 //
 
-@Path("/Usuario")
-public class CtrlAlterarUsuario implements ICtrlAlterarUsuario {
+@Path("/adm/ctrlAlterarAdm")
+public class CtrlAlterarUsuarioAdm implements ICtrlAlterarUsuarioAdm {
 
 	@Context
 	private HttpServletRequest request;
@@ -32,39 +33,37 @@ public class CtrlAlterarUsuario implements ICtrlAlterarUsuario {
 	 * (Class.forName)
 	 */
 	static {
-		System.out.println("Bytecode da classe CtrlManterUsuario foi carregado!");
+		System.out.println("Bytecode da classe CtrlManterUsuarioADM foi carregado!");
 	}
 
 	//
 	// MÉTODOS
 	//
-	public CtrlAlterarUsuario() {
-		System.out.println("Um objeto CtrlManterUsuario foi instanciado!!!");
+	public CtrlAlterarUsuarioAdm() {
+		System.out.println("Um objeto CtrlManterUsuarioADM foi instanciado!!!");
 	}
 
 
 	@Override
-	public Usuario alterarUsuario(Usuario modificacao) throws ModelException {
-		System.out.println("---ALTERAR USUARIO---");
-		DaoUsuario dao = new DaoUsuario();
+	public UsuarioAdm alterarUsuarioAdm(UsuarioAdm modificacao) throws ModelException {
+		System.out.println("---ALTERAR USUARIOADM---");
+		DaoUsuarioAdm dao = new DaoUsuarioAdm();
 		HttpSession session = request.getSession();
-		Usuario usrSession = (Usuario) session.getAttribute(CH_USUARIO_ATUAL);
+		UsuarioAdm usrSession = (UsuarioAdm) session.getAttribute(CH_ADM_ATUAL);
 		modificacao.setIdUsuario(usrSession.getIdUsuario());
-		dao.alterarUsuario(modificacao);
+		dao.alterarUsuarioAdm(modificacao);
 		return modificacao; 
 	}
 
 	@Override
-	public Usuario consultarUsuario() {
-		System.out.println("--CONSULTAR USUARIO--");
+	public UsuarioAdm consultarUsuarioAdm() {
+		System.out.println("--CONSULTAR USUARIOADM--");
 		HttpSession session = request.getSession();
-		return (Usuario) session.getAttribute(CH_USUARIO_ATUAL);
+		return (UsuarioAdm) session.getAttribute(CH_ADM_ATUAL);
 
 	}
 
 	// Desconsiderar o código abaixo. Será útil para as futuras aulas private
-	
-	//o medo de tirar aqui e dar ruim foi maior, então deixamos o código :D
 	static String chaveCriptografia = "0123456789abcdef";
 	private static byte[] decodedKey = Base64.getDecoder().decode(chaveCriptografia);
 	private static byte[] iv = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };

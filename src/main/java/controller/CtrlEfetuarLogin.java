@@ -30,6 +30,8 @@ import model.Usuario;
 import model.UsuarioAdm;
 import model.UsuarioEmpresa;
 import model.dao.DaoUsuario;
+import model.dao.DaoUsuarioAdm;
+import model.dao.DaoUsuarioEmp;
 
 @Path("/ctrlLogin")
 public class CtrlEfetuarLogin implements ICtrlEfetuarLogin {
@@ -72,31 +74,7 @@ public class CtrlEfetuarLogin implements ICtrlEfetuarLogin {
 		throw new WebApplicationException(codigo); 
 		//Response.status(codigo).entity(mensagem).build();		
 	}
-	
-	/**
-	 * Verifica se o usuário efetuou previamente um login
-	 * @return
-	 */
-	
-	/*
-	 * public static boolean sessaoValida(HttpServletRequest request) { // Recupero
-	 * o HttpSession vinculado à requisição HttpSession sessao =
-	 * request.getSession(); // Verifico no HttpSession se há algo indexado com a
-	 * chave 'contaLogada' String conta = (String)
-	 * sessao.getAttribute("contaLogada"); // Se não houver algo indexado, é porque
-	 * ele não efetuou previamente o login if (conta == null) { // Envio erro com
-	 * código FORBIDDEN (403) do http. enviarErro(HttpServletResponse.SC_FORBIDDEN,
-	 * "Login não efetuado"); return false; } // O usuário efetuou previamente o
-	 * login. return true; }
-	 */
 	 
-
-	/**
-	 *  Toda vez que chegar uma requisição, o Jersey Servlet vai injetar no parâmetro
-	 *  request (abaixo) a referência para o objeto HttpServletRequest. Isso só ocorre
-	 *  porque colocamos a anotação @Context na interface. Precisamos do request para 
-	 *  ter acesso ao objeto HttpSession
-	 */ 
 	@Override
 	public String loginUsuario(Usuario usr) {
 		System.out.println("Usuário: " + usr);
@@ -122,33 +100,47 @@ public class CtrlEfetuarLogin implements ICtrlEfetuarLogin {
 
 	@Override
 	public String loginAdm(UsuarioAdm usr) {
-		/*
 		System.out.println("Usuário Adm: " + usr);
 		DaoUsuarioAdm dao = new DaoUsuarioAdm();
-		UsuarioAdm adm = dao.obterUsuarioPeloCpf(usr.getCpfUsuario());
-		if(adm == null) {
+		UsuarioAdm adm = dao.obterUsuarioAdmPeloCpf(usr.getCpfUsuario());
+		if (adm == null) {
 			enviarErro(HttpServletResponse.SC_FORBIDDEN, "Usuário Inválido!");
 			return null;
 		}
-		
-		if(!adm.getSenhaMD5().toUpperCase().equals(usr.getSenhaMD5().toUpperCase())) {
+
+		if (!adm.getSenhaMD5().toUpperCase().equals(usr.getSenhaMD5().toUpperCase())) {
 			enviarErro(HttpServletResponse.SC_FORBIDDEN, "Senha Inválida!");
 			return null;
 		}
-	
+
 		HttpSession sessao = request.getSession(true);
 		sessao.setAttribute(CH_ADM_ATUAL, adm);
-		
+
 		// Retorno um texto dizendo que o login foi efetuado.
 		return "Login da conta '" + usr.getCpfUsuario() + "' feito com sucesso!";
-		*/
-		return null;
+
 	}
 	
 	@Override
 	public String loginEmp(UsuarioEmpresa usr) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("Usuário EMP: " + usr);
+		DaoUsuarioEmp dao = new DaoUsuarioEmp();
+		UsuarioEmpresa emp = dao.obterUsuarioEmpPeloCpf(usr.getCpfUsuario());
+		if (emp == null) {
+			enviarErro(HttpServletResponse.SC_FORBIDDEN, "Usuário Inválido!");
+			return null;
+		}
+
+		if (!emp.getSenhaMD5().toUpperCase().equals(usr.getSenhaMD5().toUpperCase())) {
+			enviarErro(HttpServletResponse.SC_FORBIDDEN, "Senha Inválida!");
+			return null;
+		}
+
+		HttpSession sessao = request.getSession(true);
+		sessao.setAttribute(CH_EMP_ATUAL, emp);
+
+		// Retorno um texto dizendo que o login foi efetuado.
+		return "Login da conta '" + usr.getCpfUsuario() + "' feito com sucesso!";
 	}
 
 	@Override
@@ -158,8 +150,23 @@ public class CtrlEfetuarLogin implements ICtrlEfetuarLogin {
 		request.getSession(true);
 		return "Logoff da conta '" + atual.getCpfUsuario() + "' feito com sucesso!";
 	}
+	@Override
+	public String logoffADM() {
+		HttpSession sessao = request.getSession();
+		Usuario atual = (Usuario)sessao.getAttribute(CH_ADM_ATUAL);
+		request.getSession(true);
+		return "Logoff da conta '" + atual.getCpfUsuario() + "' feito com sucesso!";
+	}
+	@Override
+	public String logoffEmp() {
+		HttpSession sessao = request.getSession();
+		UsuarioEmpresa atual = (UsuarioEmpresa)sessao.getAttribute(CH_EMP_ATUAL);
+		request.getSession(true);
+		return "Logoff da conta '" + atual.getCpfUsuario() + "' feito com sucesso!";
+	}
 
 	// Desconsiderar o código abaixo. Será útil para as futuras aulas
+	// Mesma coisa, medo de dar ruim de tirar
 	private static String chaveCriptografia = "0123456789abcdef";
 	private static byte[] decodedKey = Base64.getDecoder().decode(chaveCriptografia);
 	private static byte[] iv = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
